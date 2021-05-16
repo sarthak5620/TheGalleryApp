@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">TheGalleryApp</string>
+    <string name="star">star</string>
+    <string name="loading_image">Loading image</string>
+    <string name="loading_image_failed">Image load failed!</string>
+    <string name="image_loaded">Image Loaded Successfully!</string>
+    <string name="refresh">Refresh</string>
+    <string name="cliff">cliff</string>
+    <string name="add_image">Add Image</string>
+    <string name="enter_image_dimensions">Enter image dimensions</string>
+    <string name="width">width</string>
+    <string name="height">height</string>
+    <string name="fetch_image">FETCH IMAGE</string>
+    <string name="fetching_random_image">Fetching Random Image</string>
+    <string name="choose_palette_colour">Choose palette colour</string>
+    <string name="choose_label">Choose a label</string>
+    <string name="ocean">ocean</string>
+    <string name="label">Label</string>
+    <string name="ADD" />
+    <string name="add">ADD</string>
+    <string name="Add_image">AddImage</string>
+
+</resources>

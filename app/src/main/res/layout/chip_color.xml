@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.chip.Chip xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.MaterialComponents.Chip.Filter"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:text="  "
+    app:checkedIconTint="@color/white"
+    app:chipBackgroundColor="@color/design_default_color_primary"
+    tools:showIn="@layout/dialog_add_image" />
