@@ -6,7 +6,7 @@ public class Item {
     public Bitmap image;
     public int color;
     public String label;
-
+    //Constructor of item class
     public Item(Bitmap image, int color, String label) {
         this.image = image;
         this.color = color;

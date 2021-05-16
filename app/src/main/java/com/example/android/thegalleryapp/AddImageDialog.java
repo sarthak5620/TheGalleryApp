@@ -24,7 +24,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.List;
 import java.util.Set;
-
+//Implement OnCompleteListener of item helper class
 public class AddImageDialog implements ItemHelper.OnCompleteListener {
     private Context context;
     private OnCompleteListener listener;
@@ -33,20 +33,27 @@ public class AddImageDialog implements ItemHelper.OnCompleteListener {
     private boolean isCustomLabel;
     private Bitmap image;
     private AlertDialog dialog;
-
+    /*
+     **
+     * Show function is called using listener and passing context
+     */
     void show(Context context,OnCompleteListener listener){
         this.context = context;
         this.listener = listener;
+        //Create instance of/object of main activity
         if (context instanceof MainActivity){
+            inflater = ((MainActivity)context).getLayoutInflater();
              b = DialogAddImageBinding.inflate(
-                    ((MainActivity)context).getLayoutInflater()
+                    inflater
             );
         }
+        //Dismiss dialog in case error happens
         else{
             dialog.dismiss();
             listener.onError("Cast exception");
             return;
         }
+        //Dialog is called and for a nice theme we create a custom dialog theme
          dialog = new MaterialAlertDialogBuilder(context,R.style.CustomDialogTheme)
                 .setView(b.getRoot())
                 .show();
@@ -54,7 +61,10 @@ public class AddImageDialog implements ItemHelper.OnCompleteListener {
         handleDimensions();
         hideErrorEt();
     }
-
+    /*
+     **
+     * Call showData to get data of image..and we pass an image colors as set and labels as list of strings
+     */
     private void showData(Bitmap image, Set<Integer> colors, List<String> labels) {
         this.image = image;
         b.imageLoaded.setImageBitmap(image);
@@ -62,10 +72,15 @@ public class AddImageDialog implements ItemHelper.OnCompleteListener {
         inflateLabelChips(labels);
         handleCustomLabelInput();
         handleAddImageEvent();
+        //visibility of various groups we created in xml
         b.fetcher.setVisibility(View.GONE);
         b.mainRoot.setVisibility(View.VISIBLE);
+        b.customLabelInput.setVisibility(View.GONE);
     }
-
+    /*
+     **
+     * Handle dimensions of input when user inputs something
+     */
     private void handleDimensions() {
         b.materialButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +92,7 @@ public class AddImageDialog implements ItemHelper.OnCompleteListener {
                     b.width.setError("Please input something!");
                     return;
                 }
+                //Change visibility
                 b.inputDialogRoot.setVisibility(View.GONE);
                 b.fetcher.setVisibility(View.VISIBLE);
                 hideKeyboard();
@@ -96,7 +112,10 @@ public class AddImageDialog implements ItemHelper.OnCompleteListener {
             }
         });
     }
-
+    /*
+     **
+     * Handle image adding event when button is clicked
+     */
     private void handleAddImageEvent() {
         b.AddImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,12 +163,16 @@ public class AddImageDialog implements ItemHelper.OnCompleteListener {
             }
         });
     }
-
+    /*
+     **
+     * Handle custom label input.Show it if user selects custom label as input
+     */
     private void handleCustomLabelInput() {
+        //Chip label binding is created to bond label chips
         ChipLabelBinding binding = ChipLabelBinding.inflate(inflater);
         binding.getRoot().setText("Custom");
         b.colorLabel.addView(binding.getRoot());
-
+            //Onclick listener for chip binding label
         binding.getRoot().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -159,22 +182,37 @@ public class AddImageDialog implements ItemHelper.OnCompleteListener {
             }
         });
     }
-
+    /*
+     **
+     * Hide keyboard once user has done input.
+     */
     private void hideKeyboard() {
         InputMethodManager imm = (InputMethodManager)context.getSystemService(Activity.INPUT_METHOD_SERVICE);
 
         imm.hideSoftInputFromWindow(b.width.getWindowToken(), 0);
     }
+    /*
+     **
+     * callback of fetch random image once user passes width and height for an image
+     */
     private void fetchRandomImage(int width , int height) {
+        //object created of item helper class for use
         new ItemHelper()
                 .fetchData(width, height, context, this);
     }
-
+    /*
+     **
+     * callback of fetch random image once user passes either width or height for an image
+     */
     private void fetchRandomImage(int x) {
+        //object created of item helper class for use
         new ItemHelper()
                 .fetchData(x, context, this);
     }
-
+    /*
+     **
+     * Handle error method if user does not input anything.
+     */
     private void hideErrorEt() {
         b.width.addTextChangedListener(new TextWatcher() {
             @Override
@@ -193,7 +231,10 @@ public class AddImageDialog implements ItemHelper.OnCompleteListener {
             }
         });
     }
-
+    /*
+     **
+     * method to inflate label chips of image we fetched
+     */
     private void inflateLabelChips(List<String> labels) {
         for (String label : labels){
             ChipLabelBinding binding = ChipLabelBinding.inflate(inflater);
@@ -201,7 +242,10 @@ public class AddImageDialog implements ItemHelper.OnCompleteListener {
             b.colorLabel.addView(binding.getRoot());
         }
     }
-
+    /*
+     **
+     * method to inflate color chips of image we fetched
+     */
     private void inflateColorChips(Set<Integer>colors) {
         for (int color : colors){
             ChipColorBinding binding = ChipColorBinding.inflate(inflater);
@@ -210,13 +254,18 @@ public class AddImageDialog implements ItemHelper.OnCompleteListener {
         }
     }
 
-
-
+    /*
+     **
+     * method to implement of interface
+     */
+    @Override
     public void onFetched(Bitmap image, Set<Integer> colors, List<String> labels) {
-        showData(image,colors,labels);
+        showData(image, colors, labels);
     }
-
-
+    /*
+     **
+     * method to implement of interface
+     */
     @Override
     public void onError(String error) {
         dialog.dismiss();

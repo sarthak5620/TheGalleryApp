@@ -39,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
                 });
         */
     }
-
+    /*
+    *Menu methods
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.gallery_menu,menu);
@@ -48,7 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //Validate item id
         if (item.getItemId() == R.id.AddImage) {
+            //Call dialog
             showAddImageDialog();
             return true;
         }
@@ -56,10 +60,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showAddImageDialog() {
+        //Import object of class addImageDialog
         new AddImageDialog()
+                //Call onComplete Listener and implement all methods of interface
                 .show(this, new AddImageDialog.OnCompleteListener() {
                     @Override
                     public void OnImageAdded(Item item) {
+                        //CallBack of function to inflate item
                         inflateViewForItem(item);
                     }
                     @Override
@@ -72,10 +79,16 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+    /*
+    *Inflate the view for item class we use as model
+     */
     private void inflateViewForItem(Item item) {
         CardItemBinding binding = CardItemBinding.inflate(getLayoutInflater());
+        //Set image for app
         binding.imageView1.setImageBitmap(item.image);
+        //Set labels for image
         binding.title.setText(item.label);
+        //Get colors from palette and use in image
         binding.title.setBackgroundColor(item.color);
 
         b.list.addView(binding.getRoot());

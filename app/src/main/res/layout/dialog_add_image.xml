@@ -44,7 +44,7 @@
             app:layout_constraintHorizontal_bias="0.24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
+        <!--Text input layout for width-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout2"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -92,7 +92,7 @@
                 android:maxLength="4" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
+        <!-- Text input layout for height-->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/materialButton"
             android:layout_width="wrap_content"
@@ -104,7 +104,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
-
+        <!-- A group to include all layouts-->
         <androidx.constraintlayout.widget.Group
             android:id="@+id/input_dialog_root"
             android:layout_width="wrap_content"
@@ -140,7 +140,7 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             app:constraint_referenced_ids="loading_image,progress_indicator" />
-
+        <!--ImageView where the image will be loaded from internet  -->
         <ImageView
             android:id="@+id/imageLoaded"
             android:layout_width="match_parent"
@@ -162,7 +162,7 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageLoaded" />
-
+        <!--Chip for colours-->
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/color_chips"
             android:layout_width="match_parent"
@@ -198,7 +198,7 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/color_chips" />
-
+        <!--Chip label for labels-->
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/color_label"
             android:layout_width="match_parent"
@@ -213,8 +213,6 @@
             app:layout_constraintTop_toBottomOf="@+id/choose_label"
             app:singleSelection="true">
 
-
-            <include layout="@layout/chip_label" />
         </com.google.android.material.chip.ChipGroup>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -249,10 +247,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:text="@string/add"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/customLabelInput" />
-
+        <!--Group for all layouts in the image view-->
         <androidx.constraintlayout.widget.Group
             android:id="@+id/main_root"
             android:layout_width="wrap_content"
