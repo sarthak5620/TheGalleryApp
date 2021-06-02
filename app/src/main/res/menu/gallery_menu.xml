@@ -3,8 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/AddImage"
-        android:icon="@drawable/ic_add_image"
+        android:icon="@drawable/ic_choose_from_gallery"
         app:showAsAction="always"
         android:title="@string/Add_image"/>
+
+    <item
+        android:id="@+id/galleryImage"
+        android:icon="@drawable/ic_add_image"
+        app:showAsAction="always"
+        android:title="@string/choose_from_gallery"/>
 
 </menu>

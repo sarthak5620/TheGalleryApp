@@ -19,5 +19,17 @@
     <string name="ADD" />
     <string name="add">ADD</string>
     <string name="Add_image">AddImage</string>
+    <string name="nothing_on_screen">Uh-Oh! Nothing here.Tap on icon to add something</string>
+    <string name="choose_from_gallery">Choose from gallery</string>
+    <string name="share_button">Share Button</string>
+    <string name="add_image_gallery">Add</string>
+    <string name="labeltv">LabelTV</string>
+    <string name="palette_colortv">Palette_ColorTV</string>
+    <string name="edit_iamge">Edit image</string>
+    <string name="edit">Edit</string>
+    <string name="please_wait">Please wait...</string>
+    <string name="custom">Custom</string>
+    <string name="choose_palette_color">Choose palette color</string>
+    <string name="choose_label_edit">Choose Label</string>
 
 </resources>

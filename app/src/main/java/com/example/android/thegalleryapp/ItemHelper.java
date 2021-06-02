@@ -29,63 +29,84 @@ public class ItemHelper {
     private OnCompleteListener listener;
     private Context context;
     private Bitmap bitmap;
+    private String url;
     private Set<Integer> colors;
     private String rectangularImageUrl = "https://picsum.photos/%d/%d?type=",
             squareImageUrl = "https://picsum.photos/%d?type=";
 
     /*
-    **
-    * callback of fetch data function to get rectangular image
-     */
-    void fetchData(int x , int y ,Context context, OnCompleteListener listener){
-            this.listener = listener;
-            this.context = context;
-            //Callback of fetch image to get image using url provided through glide
-            fetchImage(
-                    String.format(rectangularImageUrl,x,y)
-            );
-    }
-    /*
      **
-     * callback of fetch data function to get square image
+     * callback of fetch data function to get rectangular image
      */
-    void fetchData(int x ,Context context, OnCompleteListener listener){
+    void fetchData(int x, int y, Context context, OnCompleteListener listener) {
         this.listener = listener;
         this.context = context;
         //Callback of fetch image to get image using url provided through glide
         fetchImage(
-                String.format(squareImageUrl,x)
+                String.format(rectangularImageUrl, x, y)
         );
     }
+
+    /*
+     **
+     * callback of fetch data function to get square image
+     */
+    void fetchData(int x, Context context, OnCompleteListener listener) {
+        this.listener = listener;
+        this.context = context;
+        //Callback of fetch image to get image using url provided through glide
+        fetchImage(
+                String.format(squareImageUrl, x)
+        );
+    }
+
     /*
      **
      * callback of fetch image function to get image using glide
      */
-    void fetchImage(String url){
-        //Use glide to get image offline by using bitmap and url
-        Glide.with(context)
-                .asBitmap()
-                .load(url)
-                .into(new CustomTarget<Bitmap>() {
-                    //Callback of function if source ready
-                    @Override
-                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                        bitmap = resource;
-                        //extract palette from bitmap
-                        extractPaletteFromBitmap();
-                    }
+    private void fetchImage(String url) {
+        //New object of redirected url to get the url
+        new RedirectedURL().fetchRedirectedURL(new RedirectedURL.OnCompleteListener(){
+            private String url1;
 
-                    @Override
-                    public void onLoadCleared(@Nullable Drawable placeholder) {
+            @Override
+            public void onFetched(String redirectedUrl) {
+                url1 = redirectedUrl;
+                //Fetch image using glide
+                Glide.with(context)
+                        .asBitmap()
+                        .load(url1)
+                        .into(new CustomTarget<Bitmap>() {
+                            //On image successfully fetch
+                            @Override
+                            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
 
-                    }
-                    //Callback if load failed
-                    @Override
-                    public void onLoadFailed(@Nullable Drawable errorDrawable) {
-                        super.onLoadFailed(errorDrawable);
-                        listener.onError("Image load failed!");
-                    }
-                });
+                                bitmap = resource;
+
+                                //Extract color from the image
+                                extractPaletteFromBitmap();
+                            }
+
+                            @Override
+                            public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                                super.onLoadFailed(errorDrawable);
+
+                                //call onComplete listener
+                                listener.onError("Image load failed");
+                            }
+
+                            @Override
+                            public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                            }
+
+
+                        });
+
+            }
+
+
+        }).execute(url);
     }
     /*
      **
@@ -116,7 +137,7 @@ public class ItemHelper {
                         for (ImageLabel label : labels) {
                             strings.add(label.getText());
                         }
-                        listener.onFetched(bitmap,colors,strings);
+                        listener.onFetched(bitmap,colors,strings,url);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -149,7 +170,7 @@ public class ItemHelper {
      * Interface includes 2 methods which need to be implemented when used
      */
     interface OnCompleteListener{
-        void onFetched(Bitmap image , Set<Integer>colors , List<String>labels);
+        void onFetched(Bitmap image , Set<Integer>colors , List<String>labels , String url);
         void onError(String error);
     }
 }
