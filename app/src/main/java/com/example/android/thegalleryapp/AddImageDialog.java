@@ -170,7 +170,7 @@ public class AddImageDialog implements ItemHelper.OnCompleteListener {
                                 getChipBackgroundColor().getDefaultColor();
 
                         // Callback when all the parameter are accepted
-                        listener.OnImageAdd(new Item(image,color,label,url));
+                        listener.OnImageAdd(new Item(color,label,url));
 
                         // Dismiss the dialog box
                         dialog.dismiss();

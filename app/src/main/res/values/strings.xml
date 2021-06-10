@@ -31,5 +31,14 @@
     <string name="custom">Custom</string>
     <string name="choose_palette_color">Choose palette color</string>
     <string name="choose_label_edit">Choose Label</string>
+    <string name="Remove">remove</string>
+    <string name="Change_Label">Change Label</string>
+    <string name="Remove_item">Remove</string>
+    <string name="share_image">Share via</string>
+    <string name="drag_and_drop">Drag or Drop</string>
+    <string name="sort">Sort</string>
+    <string name="search">Search</string>
+    <string name="choose_new_palette_color">Choose new palette color</string>
+    <string name="choose_new_label_title">Choose new label</string>
 
 </resources>

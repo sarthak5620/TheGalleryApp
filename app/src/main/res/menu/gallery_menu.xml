@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/galleryImage"
+        android:icon="@drawable/ic_add_image"
+        app:showAsAction="always"
+        android:title="@string/choose_from_gallery"/>
     <item
         android:id="@+id/AddImage"
         android:icon="@drawable/ic_choose_from_gallery"
@@ -8,9 +14,15 @@
         android:title="@string/Add_image"/>
 
     <item
-        android:id="@+id/galleryImage"
-        android:icon="@drawable/ic_add_image"
+        android:id="@+id/Sort_by"
+        android:icon="@drawable/ic_sort"
+        android:title="@string/sort"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search"
         app:showAsAction="always"
-        android:title="@string/choose_from_gallery"/>
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
 
 </menu>

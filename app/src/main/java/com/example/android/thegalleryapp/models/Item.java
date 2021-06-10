@@ -3,18 +3,10 @@ package com.example.android.thegalleryapp.models;
 import android.graphics.Bitmap;
 
 public class Item {
-    public Bitmap image;
+    public String image;
     public int color;
     public String label;
     public String url;
-
-    //Constructor of item class
-    public Item(Bitmap image, int color, String label, String url){
-        this.image = image;
-        this.color = color;
-        this.label = label;
-        this.url = url;
-    }
 
     /**
      * Parameterized constructor for item class

@@ -5,6 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
 <TextView
     android:id="@+id/Heading"
     style="@style/TextAppearance.MaterialComponents.Headline5"
@@ -20,21 +29,23 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
 
-<ScrollView
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:animateLayoutChanges="true"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-<LinearLayout
-    android:id="@+id/list"
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:animateLayoutChanges="true"
-    android:layout_height="wrap_content"
-    tools:context=".MainActivity">
-
-</LinearLayout>
-</ScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/OnOffDrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="28dp"
+        android:contentDescription="@string/drag_and_drop"
+        android:src="@drawable/ic_drag_drop"
+        app:fabCustomSize="64dp"
+        app:fabSize="normal"
+        app:flow_verticalBias="0.975"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.897"
+        app:layout_constraintStart_toStartOf="parent"
+        app:maxImageSize="30dp"
+        app:rippleColor="@color/purple_700" />
 </androidx.constraintlayout.widget.ConstraintLayout>
