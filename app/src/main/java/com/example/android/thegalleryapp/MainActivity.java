@@ -39,7 +39,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding b;
     List<Item> listOfItems = new ArrayList<>();
-    int noOfImages = 0;
     private boolean isDialogBoxShowed;
     List<Item> items = new ArrayList<>();
     private static final String No_Of_Images = "no of images";
@@ -49,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String COLOR = "color";
     private static final String LABEL = "label";
     int mode = 0;
+
+    private static final int LOAD_IMAGE = 0;
+    private static final int RESULT = 1;
     // Shared preferences
     SharedPreferences preferences;
     ImageAdapter adapter;
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         b = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(b.getRoot());
+        preferences = getPreferences(MODE_PRIVATE);
         setSharedPreferences();
 
         setOrientation();
@@ -423,7 +426,7 @@ public class MainActivity extends AppCompatActivity {
 
     /*
      *Save data when user goes in recent apps
-     */
+*/
     @Override
     protected void onPause() {
         super.onPause();

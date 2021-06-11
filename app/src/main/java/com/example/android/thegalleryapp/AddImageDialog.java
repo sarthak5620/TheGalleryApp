@@ -81,8 +81,8 @@ public class AddImageDialog implements ItemHelper.OnCompleteListener {
      **
      * Call showData to get data of image..and we pass an image colors as set and labels as list of strings
      */
-    private void showData(Bitmap image, Set<Integer> colors, List<String> labels) {
-        this.image = image;
+    private void showData(Bitmap bitmap, Set<Integer> colors, List<String> labels) {
+        this.image = bitmap;
         b.imageLoaded.setImageBitmap(image);
         inflateColorChips(colors);
         inflateLabelChips(labels);
@@ -279,6 +279,7 @@ public class AddImageDialog implements ItemHelper.OnCompleteListener {
      */
     @Override
     public void onFetched(Bitmap image, Set<Integer> colors, List<String> labels, String url) {
+        this.url = url;
         showData(image, colors, labels);
     }
 
