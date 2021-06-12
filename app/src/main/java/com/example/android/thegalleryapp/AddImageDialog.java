@@ -134,9 +134,6 @@ public class AddImageDialog implements ItemHelper.OnCompleteListener {
      */
     private void handleAddImageEvent() {
         b.AddImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                b.AddImageButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         // Get the chip selected IDs
@@ -176,8 +173,6 @@ public class AddImageDialog implements ItemHelper.OnCompleteListener {
                         dialog.dismiss();
                     }
                 });
-            }
-        });
     }
     /*
      **

@@ -1,6 +1,8 @@
 package com.example.android.thegalleryapp;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.view.ContextMenu;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -9,10 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.example.android.thegalleryapp.databinding.CardItemBinding;
 import com.example.android.thegalleryapp.models.Item;
 
@@ -56,15 +61,22 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         holderList.add(holder);
+        Glide.with(context).asBitmap().load(VisiblelabelItem.get(position).image)
+                .into(new CustomTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        holder.b.imageView1.setImageBitmap(resource);
+                    }
 
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                    }
+                });
         holder.b.title.setText(VisiblelabelItem.get(position).label);
         holder.b.title.setBackgroundColor(VisiblelabelItem.get(position).color);
         // Item itemList = labelItem.get(position);
 
-        Glide.with(context)
-                .asBitmap()
-                .load(VisiblelabelItem.get(position).image)
-                .into(holder.b.imageView1);
 
     }
     /*
