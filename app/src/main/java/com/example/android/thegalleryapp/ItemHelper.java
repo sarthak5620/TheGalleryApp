@@ -64,18 +64,17 @@ public class ItemHelper {
      **
      * callback of fetch image function to get image using glide
      */
-    private void fetchImage(String url) {
+    private void fetchImage(String url1) {
         //New object of redirected url to get the url
         new RedirectedURL().fetchRedirectedURL(new RedirectedURL.OnCompleteListener(){
-            private String url1;
-
             @Override
+
             public void onFetched(String redirectedUrl) {
-                url1 = redirectedUrl;
+                url = redirectedUrl;
                 //Fetch image using glide
                 Glide.with(context)
                         .asBitmap()
-                        .load(url1)
+                        .load(url)
                         .into(new CustomTarget<Bitmap>() {
                             //On image successfully fetch
                             @Override
@@ -106,7 +105,7 @@ public class ItemHelper {
             }
 
 
-        }).execute(url);
+        }).execute(url1);
     }
     /*
      **

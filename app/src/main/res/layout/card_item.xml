@@ -12,7 +12,8 @@
         android:foreground="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
-        android:layout_margin="6dp">
+        android:layout_margin="6dp"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,7 +35,9 @@
                 android:gravity="center_horizontal"
                 android:textAlignment="center"
                 android:textColor="#fff"
-                android:padding="8dp"/>
+                android:padding="8dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"/>
 
 
         </LinearLayout>
