@@ -28,7 +28,6 @@ import com.google.gson.Gson;
 import java.io.OutputStream;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import com.bumptech.glide.Glide;
 import com.example.android.thegalleryapp.databinding.ActivityMainBinding;
 import com.example.android.thegalleryapp.databinding.CardItemBinding;
 import com.example.android.thegalleryapp.models.Item;
@@ -38,7 +37,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding b;
-    List<Item> listOfItems = new ArrayList<>();
     private boolean isDialogBoxShowed;
     List<Item> items = new ArrayList<>();
     private static final String No_Of_Images = "no of images";
@@ -342,7 +340,7 @@ public class MainActivity extends AppCompatActivity {
                     .show(this, uri, new AddImageFromGalleryDialog.OnCompleteListener() {
                         @Override
                         public void onAddCompleted(Item item) {
-                            listOfItems.add(item);
+                            items.add(item);
                             b.Heading.setVisibility(View.GONE);
 
                         }
@@ -446,7 +444,8 @@ public class MainActivity extends AppCompatActivity {
                 .apply();
 
         preferences.edit()
-                .putInt(MODE, mode);
+                .putInt(MODE, mode)
+                .apply();
     }
 
 

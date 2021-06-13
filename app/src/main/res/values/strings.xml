@@ -40,5 +40,7 @@
     <string name="search">Search</string>
     <string name="choose_new_palette_color">Choose new palette color</string>
     <string name="choose_new_label_title">Choose new label</string>
+    <string name="update">UPDATe</string>
+    <string name="share">SHARE</string>
 
 </resources>

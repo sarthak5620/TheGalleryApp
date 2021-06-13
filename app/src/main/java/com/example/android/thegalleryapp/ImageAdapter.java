@@ -61,7 +61,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         holderList.add(holder);
-        Glide.with(context).asBitmap().load(VisiblelabelItem.get(position).image)
+        Glide.with(context).asBitmap().load(VisiblelabelItem.get(position).url)
                 .into(new CustomTarget<Bitmap>() {
                     @Override
                     public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
@@ -211,7 +211,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
             menu.setHeaderTitle("Select ");
             menu.add(this.getAdapterPosition(), R.id.editMenuItem, 0, "Edit");
             menu.add(this.getAdapterPosition(), R.id.shareImage, 0, "Share");
-            imageUrl = items.get(this.getAdapterPosition()).image;
+            imageUrl = items.get(this.getAdapterPosition()).url;
             index = this.getAdapterPosition();
             itemCardBinding = b;
 

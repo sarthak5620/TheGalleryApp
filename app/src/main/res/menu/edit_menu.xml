@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="@string/Change_Label" android:id="@+id/editMenuItem" />
-    <item android:title="@string/Remove_item" android:id="@+id/removeMenuItem"/>
     <item android:title="@string/share_image" android:id="@+id/shareImage"/>
 </menu>
