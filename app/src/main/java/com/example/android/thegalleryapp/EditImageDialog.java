@@ -224,7 +224,7 @@ public class EditImageDialog {
      */
     private void handleCustomLabelInput() {
         ChipLabelBinding binding = ChipLabelBinding.inflate(inflater);
-        binding.getRoot().setText("Custom");
+        binding.getRoot().setText(R.string.custom);
         b.edLabelChips.addView(binding.getRoot());
 
         binding.getRoot().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

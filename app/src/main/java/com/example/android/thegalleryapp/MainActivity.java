@@ -42,13 +42,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String No_Of_Images = "no of images";
     private static final String ITEMS = "items";
     private static final String MODE = "mode";
-    private static final String IMAGE = "image";
-    private static final String COLOR = "color";
-    private static final String LABEL = "label";
     int mode = 0;
 
-    private static final int LOAD_IMAGE = 0;
-    private static final int RESULT = 1;
     // Shared preferences
     SharedPreferences preferences;
     ImageAdapter adapter;
@@ -342,7 +337,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onAddCompleted(Item item) {
                             items.add(item);
                             b.Heading.setVisibility(View.GONE);
-
+                            adapter.notifyDataSetChanged();
                         }
 
                         @Override

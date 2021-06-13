@@ -42,5 +42,6 @@
     <string name="choose_new_label_title">Choose new label</string>
     <string name="update">UPDATe</string>
     <string name="share">SHARE</string>
+    <string name="custom">Custom</string>
 
 </resources>
