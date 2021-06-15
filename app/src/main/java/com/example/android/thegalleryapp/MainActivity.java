@@ -7,17 +7,21 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.Manifest;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Menu;
@@ -36,6 +40,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    private static final int SHARE_PERMISSION_CODE = 999;
     ActivityMainBinding b;
     private boolean isDialogBoxShowed;
     List<Item> items = new ArrayList<>();
@@ -51,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private Context context = this;
     ItemTouchHelper.Callback callback2;
     ItemTouchHelper itemTouchHelper1;
-    Bitmap bitmap;
+    private CardItemBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -206,12 +211,27 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (item.getItemId() == R.id.shareImage) {
-
-            shareImage(binding);
+          shareToOtherApps();
 
             return true;
         }
         return super.onContextItemSelected(item);
+    }
+
+    private void shareToOtherApps() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                String[] permission = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+                requestPermissions(permission, SHARE_PERMISSION_CODE);
+            }
+            else {
+                shareImage(binding);
+            }
+        }
+        else {
+            shareImage(binding);
+        }
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -384,6 +404,19 @@ public class MainActivity extends AppCompatActivity {
         dragandDropRestore();
 
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+         if (requestCode == SHARE_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                shareImage(binding);
+            } else {
+                Toast.makeText(this, "Storage permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 
     /*
      * Share image added to gallery or any other app

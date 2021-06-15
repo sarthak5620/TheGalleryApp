@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -103,6 +104,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         for (Item item : items) {
             if (item.label.toLowerCase().contains(query)) {
                 filterdata.add(item);
+            }
+            else{
+                Toast.makeText(context, "No items to show", Toast.LENGTH_SHORT).show();
             }
         }
         VisiblelabelItem = filterdata;
