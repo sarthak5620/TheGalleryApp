@@ -493,12 +493,6 @@ public class MainActivity extends AppCompatActivity {
                 .putInt(No_Of_Images, itemCount)
                 .apply();
 
-        preferences.edit()
-                .putInt(MODE, mode)
-                .apply();
     }
-
-
-
 }
 
