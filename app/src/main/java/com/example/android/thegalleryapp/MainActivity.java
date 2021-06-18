@@ -42,6 +42,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private static final int SHARE_PERMISSION_CODE = 999;
     ActivityMainBinding b;
+    CardItemBinding binding ;
     private boolean isDialogBoxShowed;
     List<Item> items = new ArrayList<>();
     private static final String No_Of_Images = "no of images";
@@ -56,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
     private Context context = this;
     ItemTouchHelper.Callback callback2;
     ItemTouchHelper itemTouchHelper1;
-    private CardItemBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(b.getRoot());
         preferences = getPreferences(MODE_PRIVATE);
         setSharedPreferences();
-
         setOrientation();
         if (!items.isEmpty()) {
             showListItems(items);
@@ -188,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         //Image Url of Context Menu
         imageUrl = adapter.imageUrl;
         int index = adapter.index;
-        CardItemBinding binding = adapter.itemCardBinding;
+        binding = adapter.itemCardBinding;
         if (item.getItemId() == R.id.editMenuItem) {
             new EditImageDialog()
                     .show(this, imageUrl, new EditImageDialog.onCompleteListener() {
@@ -211,28 +210,51 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (item.getItemId() == R.id.shareImage) {
-          shareToOtherApps();
+            shareImageToGallery();
 
             return true;
         }
         return super.onContextItemSelected(item);
     }
-
-    private void shareToOtherApps() {
+/*
+*
+* *
+* method to get permission to access content of gallery
+ */
+    private void shareImageToGallery() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
                 String[] permission = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
-
                 requestPermissions(permission, SHARE_PERMISSION_CODE);
             }
-            else {
+            else{
                 shareImage(binding);
             }
         }
-        else {
+        else{
             shareImage(binding);
         }
     }
+    /*
+     *
+     * *
+     * Method to get permission to access content of gallery and show the dialog to get image
+     */
+    private void shareImageFromGallery() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                String[] permission = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                requestPermissions(permission, SHARE_PERMISSION_CODE);
+            }
+            else{
+               showAddImageFromGalleryDialog();
+            }
+        }
+        else{
+            showAddImageFromGalleryDialog();
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //Validate item id
@@ -242,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         if (item.getItemId() == R.id.galleryImage) {
-            showAddImageFromGalleryDialog();
+            shareImageFromGallery();
         }
         if (item.getItemId() == R.id.Sort_by) {
             adapter.SortData();
