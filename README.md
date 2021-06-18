@@ -1,7 +1,7 @@
 # TheGalleryApp
 This is an application created by me to demonstrate a gallery app which saves and shares pictures.This is one of my first fully developed apps.
 
-This is a video comprising of all the features of the application [Click here to view](https://github.com/sarthak5620/TheGalleryApp/blob/master/app-debug%20(5).apk?raw=true)
+This is a video comprising of all the features of the application [Click here to view](https://github.com/sarthak5620/TheGalleryApp/blob/master/gallery%20app%20video.mp4?raw=true)
 
 # Features of the application:
 Add image from internet to gallery 
@@ -34,4 +34,4 @@ This is a video comprising of all the features of the application.
 <img width="231" alt="" src="https://user-images.githubusercontent.com/66621092/120895651-9d569780-c63b-11eb-9b63-0da9034cc864.jpeg">
 
 # Download the apk from the link given below and give your reviews:
-[Download APK](https://github.com/sarthak5620/TheGalleryApp/blob/master/app-debug%20(3).apk?raw=true)
+[Download APK](https://github.com/sarthak5620/TheGalleryApp/blob/master/app-debug%20(5).apk?raw=true)
